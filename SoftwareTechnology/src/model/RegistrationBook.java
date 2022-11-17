@@ -21,6 +21,18 @@ public class RegistrationBook {
     private String dítrict;
     private List<Citizen> listCitizen;
 
+    public RegistrationBook(String ID, int householdNumber, String householdHead, int houseNumber, String street, String ward, String dítrict) {
+        this.ID = ID;
+        this.householdNumber = householdNumber;
+        this.householdHead = householdHead;
+        this.houseNumber = houseNumber;
+        this.street = street;
+        this.ward = ward;
+        this.dítrict = dítrict;
+    }
+
+    
+    
     public RegistrationBook(String ID, int householdNumber, String householdHead, int houseNumber, String street, String ward, String dítrict, List<Citizen> listCitizen) {
         this.ID = ID;
         this.householdNumber = householdNumber;

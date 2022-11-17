@@ -68,14 +68,14 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="4">
-                <Column editable="true" title="ID" type="java.lang.String"/>
-                <Column editable="true" title="S&#x1ed1; h&#x1ed9; kh&#x1ea9;u" type="java.lang.Integer"/>
-                <Column editable="true" title="Ch&#x1ee7; h&#x1ed9;" type="java.lang.String"/>
-                <Column editable="true" title="S&#x1ed1; nh&#xe0;" type="java.lang.Integer"/>
-                <Column editable="true" title="&#x110;&#x1b0;&#x1edd;ng ph&#x1ed1; (&#x1ea5;p)" type="java.lang.String"/>
-                <Column editable="true" title="Ph&#x1b0;&#x1edd;ng (x&#xe3;, th&#x1ecb; tr&#x1ea5;n)" type="java.lang.String"/>
-                <Column editable="true" title="Qu&#x1ead;n (huy&#x1ec7;n)" type="java.lang.String"/>
+              <Table columnCount="7" rowCount="0">
+                <Column editable="false" title="ID" type="java.lang.String"/>
+                <Column editable="false" title="S&#x1ed1; h&#x1ed9; kh&#x1ea9;u" type="java.lang.Integer"/>
+                <Column editable="false" title="Ch&#x1ee7; h&#x1ed9;" type="java.lang.String"/>
+                <Column editable="false" title="S&#x1ed1; nh&#xe0;" type="java.lang.Integer"/>
+                <Column editable="false" title="&#x110;&#x1b0;&#x1edd;ng ph&#x1ed1; (&#x1ea5;p)" type="java.lang.String"/>
+                <Column editable="false" title="Ph&#x1b0;&#x1edd;ng (x&#xe3;, th&#x1ecb; tr&#x1ea5;n)" type="java.lang.String"/>
+                <Column editable="false" title="Qu&#x1ead;n (huy&#x1ec7;n)" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
