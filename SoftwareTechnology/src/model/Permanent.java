@@ -66,4 +66,5 @@ public class Permanent {
         this.license = license;
     }
 
+    
 }

@@ -4,7 +4,11 @@
  */
 package model;
 
+import connection.ConnectionToXampp;
+import java.util.ArrayList;
 import java.util.List;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,30 +22,32 @@ public class RegistrationBook {
     private int houseNumber;
     private String street;
     private String ward;
-    private String dítrict;
+    private String district;
     private List<Citizen> listCitizen;
 
-    public RegistrationBook(String ID, int householdNumber, String householdHead, int houseNumber, String street, String ward, String dítrict) {
+    public RegistrationBook(String ID, int householdNumber, String householdHead, int houseNumber, String street, String ward, String district) {
         this.ID = ID;
         this.householdNumber = householdNumber;
         this.householdHead = householdHead;
         this.houseNumber = houseNumber;
         this.street = street;
         this.ward = ward;
-        this.dítrict = dítrict;
+        this.district = district;
     }
 
-    
-    
-    public RegistrationBook(String ID, int householdNumber, String householdHead, int houseNumber, String street, String ward, String dítrict, List<Citizen> listCitizen) {
+    public RegistrationBook(String ID, int householdNumber, String householdHead, int houseNumber, String street, String ward, String district, List<Citizen> listCitizen) {
         this.ID = ID;
         this.householdNumber = householdNumber;
         this.householdHead = householdHead;
         this.houseNumber = houseNumber;
         this.street = street;
         this.ward = ward;
-        this.dítrict = dítrict;
+        this.district = district;
         this.listCitizen = listCitizen;
+    }
+
+    public RegistrationBook() {
+        super();
     }
 
     public String getID() {
@@ -92,12 +98,12 @@ public class RegistrationBook {
         this.ward = ward;
     }
 
-    public String getDítrict() {
-        return dítrict;
+    public String getDistrict() {
+        return district;
     }
 
-    public void setDítrict(String dítrict) {
-        this.dítrict = dítrict;
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
     public List<Citizen> getListCitizen() {
@@ -107,9 +113,47 @@ public class RegistrationBook {
     public void setListCitizen(List<Citizen> listCitizen) {
         this.listCitizen = listCitizen;
     }
-    
-    public void insertCitizen(Citizen ctz){
+
+    public void insertCitizen(Citizen ctz) {
         this.listCitizen.add(ctz);
     }
+    
+    public static RegistrationBook getInstace(){
+        return new RegistrationBook();
+    }
+    
+    public List<RegistrationBook> show(DefaultTableModel md) {
+        List<RegistrationBook> listRegistrationBook = new ArrayList<RegistrationBook>();
+        try {
+            Connection conn = ConnectionToXampp.getConnection();
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM RegistrationBook";
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                String ID = rs.getString("ID");
+                int householdNumber = rs.getInt("HOUSEHOLDNUMBER");
+                String householdHead = rs.getString("HOUSEHOLDHEAD");
+                int houseNumber = rs.getInt("HOUSENUMBER");
+                String street = rs.getString("STREET");
+                String ward = rs.getString("WARD");
+                String district = rs.getString("DISTRICT");
+                
+                RegistrationBook rgb = new RegistrationBook(ID, householdNumber, householdHead, houseNumber, street, ward, district);
+                md.addRow(new Object[]{rgb.getID()+"",rgb.getHouseholdHead()+"",rgb.getHouseholdHead()+"",rgb.getHouseNumber()+"",rgb.getStreet()+"",rgb.getWard()+"",rgb.getDistrict()+""});
+                listRegistrationBook.add(rgb);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return listRegistrationBook;
+    }
 
+    @Override
+    public String toString() {
+        return "RegistrationBook{" + "ID=" + ID + ", householdNumber=" + householdNumber + ", householdHead=" + householdHead + ", houseNumber=" + houseNumber + ", street=" + street + ", ward=" + ward + ", district=" + district + '}';
+    }
+    
+    
 }
