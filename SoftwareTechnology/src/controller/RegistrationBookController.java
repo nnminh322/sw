@@ -5,6 +5,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.RegistrationBook;
 
@@ -14,7 +15,23 @@ import model.RegistrationBook;
  */
 public class RegistrationBookController {
     private RegistrationBook rgb;
-    private ArrayList<RegistrationBook> listRgb;
+    private List<RegistrationBook> listRgb;
+
+    public RegistrationBook getRgb() {
+        return rgb;
+    }
+
+    public void setRgb(RegistrationBook rgb) {
+        this.rgb = rgb;
+    }
+
+    public List<RegistrationBook> getListRgb() {
+        return listRgb;
+    }
+
+    public void setListRgb(List<RegistrationBook> listRgb) {
+        this.listRgb = listRgb;
+    }
 
     public RegistrationBookController getInstance(){
         return new RegistrationBookController();
@@ -28,7 +45,7 @@ public class RegistrationBookController {
     
     public void showRegistrationBook(DefaultTableModel md){
         rgb = new RegistrationBook();
-        rgb.show(md);
+        this.setListRgb(rgb.show(md));
     }
     
     

@@ -139,7 +139,7 @@ public class RegistrationBook {
                 String district = rs.getString("DISTRICT");
                 
                 RegistrationBook rgb = new RegistrationBook(ID, householdNumber, householdHead, houseNumber, street, ward, district);
-                md.addRow(new Object[]{rgb.getID()+"",rgb.getHouseholdHead()+"",rgb.getHouseholdHead()+"",rgb.getHouseNumber()+"",rgb.getStreet()+"",rgb.getWard()+"",rgb.getDistrict()+""});
+                md.addRow(new Object[]{rgb.getID()+"",rgb.getHouseholdNumber()+"",rgb.getHouseholdHead()+"",rgb.getHouseNumber()+"",rgb.getStreet()+"",rgb.getWard()+"",rgb.getDistrict()+""});
                 listRegistrationBook.add(rgb);
             }
             conn.close();

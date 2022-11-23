@@ -6,6 +6,7 @@ package view;
 
 import controller.CitizenController;
 import controller.RegistrationBookController;
+import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author sv_minhnn
  */
 public class Home extends javax.swing.JFrame {
+    public int i;
     public RegistrationBookController rgbcontroller;
     public CitizenController ctzcontroller;
     /**
@@ -86,6 +88,11 @@ public class Home extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -166,14 +173,14 @@ public class Home extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Họ và tên", "Bí danh", "Ngày sinh", "Nguyên quán", "Dân tộc", "Nghề nghiệp", "Căn cước", "Giới tính"
+                "Họ và tên", "Bí danh", "Ngày sinh", "Nguyên quán", "Dân tộc", "Nghề nghiệp", "Căn cước", "Giới tính", "Số hộ khẩu"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -184,9 +191,24 @@ public class Home extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jTable2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTable2KeyReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         jButton5.setText("Xem thông tin");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -285,6 +307,11 @@ public class Home extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+//    public void showDetailCitizen(){
+//        int i = jTable2.getSelectedRow();
+//        
+//    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -308,6 +335,29 @@ public class Home extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jTable2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable2KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable2KeyReleased
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        //int i = 
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+        i = jTable2.getSelectedRow();
+        
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // TODO add your handling code here:
+        CitizenView citizenView = new CitizenView();
+        citizenView.setVisible(true);
+        ctzcontroller.showDetailCtz(i, citizenView);
+                
+    }//GEN-LAST:event_jButton5MouseClicked
 
     /**
      * @param args the command line arguments

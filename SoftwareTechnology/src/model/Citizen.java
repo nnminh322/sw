@@ -11,7 +11,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import view.CitizenView;
 
 /**
  *
@@ -55,17 +57,24 @@ public class Citizen {
         this.gender = gender;
     }
 
-
-    public Citizen(String fullName, String nickName, Date dateOfBirth, String domicile, String ethnic, String job, String citizenID, String gender) {
+    public Citizen(String fullName, String nickName, Date dateOfBirth, String birthPlace, String domicile, String ethnic, String job, String workPlace, String citizenID, Date dateRange, String issuedBy, String relationWithHouseholdHead, String householdNumber, String gender) {
         this.fullName = fullName;
         this.nickName = nickName;
         this.dateOfBirth = dateOfBirth;
+        this.birthPlace = birthPlace;
         this.domicile = domicile;
         this.ethnic = ethnic;
         this.job = job;
+        this.workPlace = workPlace;
         this.citizenID = citizenID;
+        this.dateRange = dateRange;
+        this.issuedBy = issuedBy;
+        this.relationWithHouseholdHead = relationWithHouseholdHead;
+        this.householdNumber = householdNumber;
         this.gender = gender;
     }
+
+
 
     public Citizen() {
         super();
@@ -216,14 +225,20 @@ public class Citizen {
                 String fullName = rs.getString("FULLNAME");
                 String nickName = rs.getString("NICKNAME");
                 Date dateOfBirth = rs.getDate("DATEOFBIRTH");
+                String birthPlace = rs.getString("BIRTHPLACE");
                 String domicile = rs.getString("DOMICILE");
                 String ethnic = rs.getString("ETHNIC");
                 String job = rs.getString("JOB");
+                String workPlace = rs.getString("WORKPLACE");
                 String citizenID = rs.getString("CITIZENID");
+                Date dateRange = rs.getDate("DATERANGE");
+                String issuedBy = rs.getString("ISSUEDBY");
+                String relationWithHouseholdHead = rs.getString("RELATIONWITHHOUSEHOLDHEAD");
                 String gender = rs.getString("GENDER");
-
-                Citizen ctz = new Citizen(fullName,nickName,dateOfBirth,domicile,ethnic,job,citizenID,gender);
-                md.addRow(new Object[]{ctz.getFullName()+"",ctz.getNickName()+"",ctz.getDateOfBirth()+"",ctz.getDomicile()+"",ctz.getEthnic()+"",ctz.getJob()+"",ctz.getCitizenID()+"",ctz.getGender()+""});
+                String householdNumber = rs.getString("HOUSEHOLDNUMBER");
+                
+                Citizen ctz = new Citizen(fullName, nickName, dateOfBirth, birthPlace, domicile, ethnic, job, workPlace, citizenID, dateRange, issuedBy, relationWithHouseholdHead, householdNumber, gender);
+                md.addRow(new Object[]{ctz.getFullName()+"",ctz.getNickName()+"",ctz.getDateOfBirth()+"",ctz.getDomicile()+"",ctz.getEthnic()+"",ctz.getJob()+"",ctz.getCitizenID()+"",ctz.getGender()+"",ctz.getHouseholdNumber()+""});
                 listCitizen.add(ctz);
             }
             conn.close();
@@ -233,5 +248,22 @@ public class Citizen {
 
         return listCitizen;
     }
-
+    
+    public void showDetail(CitizenView citizenView, Citizen ctz){
+        citizenView.getjTextField_relationwithhouseholdhead().setText(ctz.getRelationWithHouseholdHead());
+        citizenView.getjTextField_fullname().setText(ctz.getFullName());
+        citizenView.getjTextField_nickname().setText(ctz.getNickName());
+        citizenView.getjTextField_dateofbirth().setText(ctz.getDateOfBirth()+"");
+        citizenView.getjTextField_gender().setText(ctz.getGender());
+        citizenView.getjTextField_birthplace().setText(ctz.getBirthPlace());
+        citizenView.getjTextField_domicile().setText(ctz.getDomicile());
+        citizenView.getjTextField_ethnic().setText(ctz.getDomicile());
+        //ton giao
+        citizenView.getjTextField_job().setText(ctz.getJob());
+        citizenView.getjTextField14().setText(ctz.getWorkPlace());
+        citizenView.getjTextField_citizenid().setText(ctz.getCitizenID());
+        citizenView.getjTextField_issuedby().setText(ctz.getIssuedBy());
+        citizenView.getjTextField_daterange().setText(ctz.getDateRange()+"");
+        
+    }
 }
