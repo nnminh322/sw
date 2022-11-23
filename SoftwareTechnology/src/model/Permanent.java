@@ -65,6 +65,4 @@ public class Permanent {
     public void setLicense(boolean license) {
         this.license = license;
     }
-
-    
 }

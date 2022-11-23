@@ -4,14 +4,21 @@
  */
 package model;
 
+import connection.ConnectionToXampp;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author sv_minhnn
  */
 public class Citizen {
+
     private String fullName;
     private String nickName;
     private Date dateOfBirth;
@@ -20,15 +27,16 @@ public class Citizen {
     private String ethnic;
     private String job;
     private String workPlace;
-    private String CitizenID;
+    private String citizenID;
     private Date dateRange;
     private String issuedBy;
     private String relationWithHouseholdHead;
     private String householdNumber;
     private List<Permanent> listPermanent;
     private String note;
+    private String gender;
 
-    public Citizen(String fullName, String nickName, Date dateOfBirth, String birthPlace, String domicile, String ethnic, String job, String workPlace, String CitizenID, Date dateRange, String issuedBy, String relationWithHouseholdHead, String householdNumber, List<Permanent> listPermanent, String note) {
+    public Citizen(String fullName, String nickName, Date dateOfBirth, String birthPlace, String domicile, String ethnic, String job, String workPlace, String citizenID, Date dateRange, String issuedBy, String relationWithHouseholdHead, String householdNumber, List<Permanent> listPermanent, String note, String gender) {
         this.fullName = fullName;
         this.nickName = nickName;
         this.dateOfBirth = dateOfBirth;
@@ -37,17 +45,33 @@ public class Citizen {
         this.ethnic = ethnic;
         this.job = job;
         this.workPlace = workPlace;
-        this.CitizenID = CitizenID;
+        this.citizenID = citizenID;
         this.dateRange = dateRange;
         this.issuedBy = issuedBy;
         this.relationWithHouseholdHead = relationWithHouseholdHead;
         this.householdNumber = householdNumber;
         this.listPermanent = listPermanent;
         this.note = note;
+        this.gender = gender;
     }
 
 
+    public Citizen(String fullName, String nickName, Date dateOfBirth, String domicile, String ethnic, String job, String citizenID, String gender) {
+        this.fullName = fullName;
+        this.nickName = nickName;
+        this.dateOfBirth = dateOfBirth;
+        this.domicile = domicile;
+        this.ethnic = ethnic;
+        this.job = job;
+        this.citizenID = citizenID;
+        this.gender = gender;
+    }
 
+    public Citizen() {
+        super();
+    }
+
+  
     public String getFullName() {
         return fullName;
     }
@@ -113,11 +137,11 @@ public class Citizen {
     }
 
     public String getCitizenID() {
-        return CitizenID;
+        return citizenID;
     }
 
-    public void setCitizenID(String CitizenID) {
-        this.CitizenID = CitizenID;
+    public void setCitizenID(String citizenID) {
+        this.citizenID = citizenID;
     }
 
     public Date getDateRange() {
@@ -167,10 +191,47 @@ public class Citizen {
     public void setNote(String note) {
         this.note = note;
     }
-    
-    
-    public void insertPermanent(Permanent p){
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void insertPermanent(Permanent p) {
         this.listPermanent.add(p);
     }
-    
+
+    public List<Citizen> show(DefaultTableModel md) {
+        List<Citizen> listCitizen = new ArrayList<Citizen>();
+
+        try {
+            Connection conn = ConnectionToXampp.getConnection();
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM Citizen";
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                String fullName = rs.getString("FULLNAME");
+                String nickName = rs.getString("NICKNAME");
+                Date dateOfBirth = rs.getDate("DATEOFBIRTH");
+                String domicile = rs.getString("DOMICILE");
+                String ethnic = rs.getString("ETHNIC");
+                String job = rs.getString("JOB");
+                String citizenID = rs.getString("CITIZENID");
+                String gender = rs.getString("GENDER");
+
+                Citizen ctz = new Citizen(fullName,nickName,dateOfBirth,domicile,ethnic,job,citizenID,gender);
+                md.addRow(new Object[]{ctz.getFullName()+"",ctz.getNickName()+"",ctz.getDateOfBirth()+"",ctz.getDomicile()+"",ctz.getEthnic()+"",ctz.getJob()+"",ctz.getCitizenID()+"",ctz.getGender()+""});
+                listCitizen.add(ctz);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listCitizen;
+    }
+
 }
