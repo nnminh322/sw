@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
+import view.CitizenOfRGB;
+import view.CitizenViewPanel;
 
 /**
  *
@@ -23,7 +25,7 @@ public class RegistrationBook {
     private String street;
     private String ward;
     private String district;
-    private List<Citizen> listCitizen;
+    public List<Citizen> listCitizen;
 
     public RegistrationBook(String ID, int householdNumber, String householdHead, int houseNumber, String street, String ward, String district) {
         this.ID = ID;
@@ -117,11 +119,11 @@ public class RegistrationBook {
     public void insertCitizen(Citizen ctz) {
         this.listCitizen.add(ctz);
     }
-    
-    public static RegistrationBook getInstace(){
+
+    public static RegistrationBook getInstace() {
         return new RegistrationBook();
     }
-    
+
     public List<RegistrationBook> show(DefaultTableModel md) {
         List<RegistrationBook> listRegistrationBook = new ArrayList<RegistrationBook>();
         try {
@@ -137,16 +139,16 @@ public class RegistrationBook {
                 String street = rs.getString("STREET");
                 String ward = rs.getString("WARD");
                 String district = rs.getString("DISTRICT");
-                
+
                 RegistrationBook rgb = new RegistrationBook(ID, householdNumber, householdHead, houseNumber, street, ward, district);
-                md.addRow(new Object[]{rgb.getID()+"",rgb.getHouseholdNumber()+"",rgb.getHouseholdHead()+"",rgb.getHouseNumber()+"",rgb.getStreet()+"",rgb.getWard()+"",rgb.getDistrict()+""});
+                md.addRow(new Object[]{rgb.getID() + "", rgb.getHouseholdNumber() + "", rgb.getHouseholdHead() + "", rgb.getHouseNumber() + "", rgb.getStreet() + "", rgb.getWard() + "", rgb.getDistrict() + ""});
                 listRegistrationBook.add(rgb);
             }
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return listRegistrationBook;
     }
 
@@ -154,6 +156,62 @@ public class RegistrationBook {
     public String toString() {
         return "RegistrationBook{" + "ID=" + ID + ", householdNumber=" + householdNumber + ", householdHead=" + householdHead + ", houseNumber=" + houseNumber + ", street=" + street + ", ward=" + ward + ", district=" + district + '}';
     }
-    
-    
+
+    public List<Citizen> addCitizenToRGB(List<Citizen> listCitizen, int i) {
+
+        try {
+            Connection conn = ConnectionToXampp.getConnection();
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM Citizen Where HOUSEHOLDNUMBER LIKE " + i;
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                String fullName = rs.getString("FULLNAME");
+                String nickName = rs.getString("NICKNAME");
+                Date dateOfBirth = rs.getDate("DATEOFBIRTH");
+                String birthPlace = rs.getString("BIRTHPLACE");
+                String domicile = rs.getString("DOMICILE");
+                String ethnic = rs.getString("ETHNIC");
+                String job = rs.getString("JOB");
+                String workPlace = rs.getString("WORKPLACE");
+                String citizenID = rs.getString("CITIZENID");
+                Date dateRange = rs.getDate("DATERANGE");
+                String issuedBy = rs.getString("ISSUEDBY");
+                String relationWithHouseholdHead = rs.getString("RELATIONWITHHOUSEHOLDHEAD");
+                String gender = rs.getString("GENDER");
+                String householdNumber1 = rs.getString("HOUSEHOLDNUMBER");
+
+                Citizen ctz = new Citizen(fullName, nickName, dateOfBirth, birthPlace, domicile, ethnic, job, workPlace, citizenID, dateRange, issuedBy, relationWithHouseholdHead, householdNumber1, gender);
+                listCitizen.add(ctz);
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listCitizen;
+    }
+
+    public void showDetail(CitizenOfRGB citizenOfRGB, RegistrationBook rgb) {
+        for (int i = 0; i < rgb.getListCitizen().size(); i++) {
+            CitizenViewPanel citizenViewPanel = new CitizenViewPanel();
+
+            citizenViewPanel.getjTextField_relationwithhouseholdhead().setText(rgb.getListCitizen().get(i).getRelationWithHouseholdHead());
+            citizenViewPanel.getjTextField_fullname().setText(rgb.getListCitizen().get(i).getFullName());
+            citizenViewPanel.getjTextField_nickname().setText(rgb.getListCitizen().get(i).getNickName());
+            citizenViewPanel.getjTextField_dateofbirth().setText(rgb.getListCitizen().get(i).getDateOfBirth() + "");
+            citizenViewPanel.getjTextField_gender().setText(rgb.getListCitizen().get(i).getGender());
+            citizenViewPanel.getjTextField_birthplace().setText(rgb.getListCitizen().get(i).getBirthPlace());
+            citizenViewPanel.getjTextField_domicile().setText(rgb.getListCitizen().get(i).getDomicile());
+            citizenViewPanel.getjTextField_ethnic().setText(rgb.getListCitizen().get(i).getDomicile());
+            //ton giao
+            citizenViewPanel.getjTextField_job().setText(rgb.getListCitizen().get(i).getJob());
+            citizenViewPanel.getjTextField14().setText(rgb.getListCitizen().get(i).getWorkPlace());
+            citizenViewPanel.getjTextField_citizenid().setText(rgb.getListCitizen().get(i).getCitizenID());
+            citizenViewPanel.getjTextField_issuedby().setText(rgb.getListCitizen().get(i).getIssuedBy());
+            citizenViewPanel.getjTextField_daterange().setText(rgb.getListCitizen().get(i).getDateRange() + "");
+            
+            citizenOfRGB.AddCitizenToRegistrationBookView(citizenViewPanel);
+        }
+    }
+
 }

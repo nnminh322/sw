@@ -4,31 +4,25 @@
  */
 package view;
 
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 /**
  *
- * @author nnminh322
+ * @author sv_minhnn
  */
 public class CitizenOfRGB extends javax.swing.JFrame {
 
-    public CitizenView ctzv1;
-    public CitizenView ctzv2;
-    public NewJPanel j1;
-    
-    public NewJPanel j2;
+    public static CitizenViewPanel citizenViewPanel;
+    public static CitizenViewPanel citizenViewPanel2;
+    public static CitizenViewPanel citizenViewPanel3;
+    public static CitizenViewPanel citizenViewPanel4;
 
     /**
      * Creates new form CitizenOfRGB
      */
     public CitizenOfRGB() {
         initComponents();
-        
-        this.AddCitizenToRegistrationBookView(j1);        
-        this.AddCitizenToRegistrationBookView(j2);
-
+//        this.setVisible(true);
     }
 
     /**
@@ -40,22 +34,22 @@ public class CitizenOfRGB extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jScrollPane1.setViewportView(jPanel1);
+        jScrollPane3.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 796, Short.MAX_VALUE)
         );
 
         pack();
@@ -88,24 +82,22 @@ public class CitizenOfRGB extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        citizenViewPanel = new CitizenViewPanel();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 new CitizenOfRGB().setVisible(true);
             }
         });
     }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 
-    public void AddCitizenToRegistrationBookView(NewJPanel newJPanel) {
-       newJPanel = new NewJPanel();
-       this.jPanel1.add(newJPanel);
+    public void AddCitizenToRegistrationBookView(CitizenViewPanel citizenViewPanel) {
+        this.jPanel1.add(citizenViewPanel);
     }
-    
-    
 }

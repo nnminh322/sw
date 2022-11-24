@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.RegistrationBook;
+import view.CitizenOfRGB;
+import view.CitizenViewPanel;
 
 /**
  *
@@ -16,6 +18,7 @@ import model.RegistrationBook;
 public class RegistrationBookController {
     private RegistrationBook rgb;
     private List<RegistrationBook> listRgb;
+    public CitizenViewPanel citizenViewPanel;
 
     public RegistrationBook getRgb() {
         return rgb;
@@ -47,6 +50,21 @@ public class RegistrationBookController {
         rgb = new RegistrationBook();
         this.setListRgb(rgb.show(md));
     }
+
+    public void showDetailRgb(int i, CitizenOfRGB citizenOfRGB) {
+        for (int j = 0; j < listRgb.get(i).listCitizen.size(); j++) {
+            citizenViewPanel = new CitizenViewPanel();
+            listRgb.get(i).listCitizen.get(j).showDetailjpn(citizenViewPanel ,listRgb.get(i).listCitizen.get(j));
+        }
+//        listRgb.get(i).showDetail(citizenOfRGB, listRgb.get(i));
+    }
+
+    public void addListCitizen(int i) {
+        this.listRgb.get(i).listCitizen = new ArrayList<>();
+        this.listRgb.get(i).addCitizenToRGB(this.listRgb.get(i).listCitizen, this.listRgb.get(i).getHouseNumber());
+    }
+        
+        
     
     
 }

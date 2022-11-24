@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import view.CitizenView;
+import view.CitizenViewPanel;
 
 /**
  *
@@ -264,6 +265,24 @@ public class Citizen {
         citizenView.getjTextField_citizenid().setText(ctz.getCitizenID());
         citizenView.getjTextField_issuedby().setText(ctz.getIssuedBy());
         citizenView.getjTextField_daterange().setText(ctz.getDateRange()+"");
+        
+    }
+    //
+        public void showDetailjpn(CitizenViewPanel newJPanel1, Citizen ctz){
+        newJPanel1.getjTextField_relationwithhouseholdhead().setText(ctz.getRelationWithHouseholdHead());
+        newJPanel1.getjTextField_fullname().setText(ctz.getFullName());
+        newJPanel1.getjTextField_nickname().setText(ctz.getNickName());
+        newJPanel1.getjTextField_dateofbirth().setText(ctz.getDateOfBirth()+"");
+        newJPanel1.getjTextField_gender().setText(ctz.getGender());
+        newJPanel1.getjTextField_birthplace().setText(ctz.getBirthPlace());
+        newJPanel1.getjTextField_domicile().setText(ctz.getDomicile());
+        newJPanel1.getjTextField_ethnic().setText(ctz.getDomicile());
+        //ton giao
+        newJPanel1.getjTextField_job().setText(ctz.getJob());
+        newJPanel1.getjTextField14().setText(ctz.getWorkPlace());
+        newJPanel1.getjTextField_citizenid().setText(ctz.getCitizenID());
+        newJPanel1.getjTextField_issuedby().setText(ctz.getIssuedBy());
+        newJPanel1.getjTextField_daterange().setText(ctz.getDateRange()+"");
         
     }
 }

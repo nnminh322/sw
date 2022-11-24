@@ -9,12 +9,14 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.Citizen;
 import view.CitizenView;
+import view.CitizenViewPanel;
 
 /**
  *
  * @author nnminh322
  */
 public class CitizenController {
+
     private Citizen ctz;
     private List<Citizen> listCtz;
 
@@ -33,13 +35,13 @@ public class CitizenController {
     public void setListCtz(List<Citizen> listCtz) {
         this.listCtz = listCtz;
     }
-    
-    public void showCitizen(DefaultTableModel md){
+
+    public void showCitizen(DefaultTableModel md) {
         ctz = new Citizen();
         this.setListCtz(ctz.show(md));
     }
-    
-    public void showDetailCtz(int i, CitizenView citizenView){
+
+    public void showDetailCtz(int i, CitizenView citizenView) {
         listCtz.get(i).showDetail(citizenView, listCtz.get(i));
     }
 }
