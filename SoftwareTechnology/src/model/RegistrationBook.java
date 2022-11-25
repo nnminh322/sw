@@ -182,6 +182,8 @@ public class RegistrationBook {
 
                 Citizen ctz = new Citizen(fullName, nickName, dateOfBirth, birthPlace, domicile, ethnic, job, workPlace, citizenID, dateRange, issuedBy, relationWithHouseholdHead, householdNumber1, gender);
                 listCitizen.add(ctz);
+                System.out.println(ctz.getFullName());
+
             }
             conn.close();
         } catch (Exception e) {
@@ -209,7 +211,7 @@ public class RegistrationBook {
             citizenViewPanel.getjTextField_citizenid().setText(rgb.getListCitizen().get(i).getCitizenID());
             citizenViewPanel.getjTextField_issuedby().setText(rgb.getListCitizen().get(i).getIssuedBy());
             citizenViewPanel.getjTextField_daterange().setText(rgb.getListCitizen().get(i).getDateRange() + "");
-            
+
             citizenOfRGB.AddCitizenToRegistrationBookView(citizenViewPanel);
         }
     }

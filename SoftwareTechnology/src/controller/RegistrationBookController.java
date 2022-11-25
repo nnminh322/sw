@@ -16,6 +16,7 @@ import view.CitizenViewPanel;
  * @author nnminh322
  */
 public class RegistrationBookController {
+
     private RegistrationBook rgb;
     private List<RegistrationBook> listRgb;
     public CitizenViewPanel citizenViewPanel;
@@ -36,17 +37,15 @@ public class RegistrationBookController {
         this.listRgb = listRgb;
     }
 
-    public RegistrationBookController getInstance(){
+    public RegistrationBookController getInstance() {
         return new RegistrationBookController();
     }
-    
+
     public RegistrationBookController() {
         super();
     }
-    
-    
-    
-    public void showRegistrationBook(DefaultTableModel md){
+
+    public void showRegistrationBook(DefaultTableModel md) {
         rgb = new RegistrationBook();
         this.setListRgb(rgb.show(md));
     }
@@ -54,17 +53,13 @@ public class RegistrationBookController {
     public void showDetailRgb(int i, CitizenOfRGB citizenOfRGB) {
         for (int j = 0; j < listRgb.get(i).listCitizen.size(); j++) {
             citizenViewPanel = new CitizenViewPanel();
-            listRgb.get(i).listCitizen.get(j).showDetailjpn(citizenViewPanel ,listRgb.get(i).listCitizen.get(j));
+            listRgb.get(i).listCitizen.get(j).showDetailjpn(citizenViewPanel, listRgb.get(i).listCitizen.get(j));
+            citizenOfRGB.AddCitizenToRegistrationBookView(citizenViewPanel);
         }
-//        listRgb.get(i).showDetail(citizenOfRGB, listRgb.get(i));
     }
 
     public void addListCitizen(int i) {
         this.listRgb.get(i).listCitizen = new ArrayList<>();
-        this.listRgb.get(i).addCitizenToRGB(this.listRgb.get(i).listCitizen, this.listRgb.get(i).getHouseNumber());
+        this.listRgb.get(i).addCitizenToRGB(this.listRgb.get(i).listCitizen, this.listRgb.get(i).getHouseholdNumber());
     }
-        
-        
-    
-    
 }

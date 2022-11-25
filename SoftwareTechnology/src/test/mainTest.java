@@ -30,7 +30,7 @@ public class mainTest {
 //        RegistrationBook rb = new RegistrationBook("555", 1, "natmin", 22, "pm", "hbt", "dd");        
 //        RegistrationBook rb2 = new RegistrationBook("18237", 2, "nat", 322, "aa", "bb", "cc");
 //            CitizenOfRGB citizenOfRGB = new CitizenOfRGB();
-         Home l = new Home();
+        Home l = new Home();
 //         Date date1 = new SimpleDateFormat("dd-MM-yyyy").parse("04-03-2002");
 //         Date date2 = new SimpleDateFormat("dd-MM-yyyy").parse("01-09-2017");
 //         Citizen t = new Citizen("Nguyen Nhat Minh", "natmin",date1, "Tan Trao, Thanh Mien, Hai Duong", "Tan Trao, Thanh Mien, Hai Duong", "Kinh", "developer", "Landmard 72", "030202002902", date2, "Cuc canh sat", "Chủ hộ", "1", "Nam");
