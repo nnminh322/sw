@@ -23,6 +23,7 @@ import view.CitizenViewPanel;
  * @author sv_minhnn
  */
 public class Citizen {
+
     public DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     private String fullName;
     private String nickName;
@@ -38,8 +39,8 @@ public class Citizen {
     private String relationWithHouseholdHead;
     private String householdNumber;
     private List<Permanent> listPermanent;
-    private String note;
     private String gender;
+    private String note;
 
     public Citizen(String fullName, String nickName, Date dateOfBirth, String birthPlace, String domicile, String ethnic, String gender) {
         this.relationWithHouseholdHead = "Con";
@@ -52,7 +53,7 @@ public class Citizen {
         this.gender = gender;
     }
 
-    public Citizen(String fullName, String nickName, Date dateOfBirth, String birthPlace, String domicile, String ethnic, String job, String workPlace, String citizenID, Date dateRange, String issuedBy, String relationWithHouseholdHead, String householdNumber, List<Permanent> listPermanent, String note, String gender) {
+    public Citizen(String fullName, String nickName, Date dateOfBirth, String birthPlace, String domicile, String ethnic, String job, String workPlace, String citizenID, Date dateRange, String issuedBy, String relationWithHouseholdHead, String householdNumber, String note, String gender) {
         this.fullName = fullName;
         this.nickName = nickName;
         this.dateOfBirth = dateOfBirth;
@@ -66,7 +67,7 @@ public class Citizen {
         this.issuedBy = issuedBy;
         this.relationWithHouseholdHead = relationWithHouseholdHead;
         this.householdNumber = householdNumber;
-        this.listPermanent = listPermanent;
+//        this.listPermanent = listPermanent;
         this.note = note;
         this.gender = gender;
     }
@@ -94,7 +95,7 @@ public class Citizen {
 
     @Override
     public String toString() {
-        return "Citizen{" + "fullName=" + fullName + ", nickName=" + nickName + ", dateOfBirth=" + dateOfBirth + ", birthPlace=" + birthPlace + ", domicile=" + domicile + ", ethnic=" + ethnic + ", job=" + job + ", workPlace=" + workPlace + ", citizenID=" + citizenID + ", dateRange=" + dateRange + ", issuedBy=" + issuedBy + ", relationWithHouseholdHead=" + relationWithHouseholdHead + ", householdNumber=" + householdNumber + ", listPermanent=" + listPermanent + ", note=" + note + ", gender=" + gender + '}';
+        return "Citizen{" + "df=" + df + ", fullName=" + fullName + ", nickName=" + nickName + ", dateOfBirth=" + dateOfBirth + ", birthPlace=" + birthPlace + ", domicile=" + domicile + ", ethnic=" + ethnic + ", job=" + job + ", workPlace=" + workPlace + ", citizenID=" + citizenID + ", dateRange=" + dateRange + ", issuedBy=" + issuedBy + ", relationWithHouseholdHead=" + relationWithHouseholdHead + ", householdNumber=" + householdNumber + ", listPermanent=" + listPermanent + ", gender=" + gender + ", note=" + note + '}';
     }
 
     public String getFullName() {
@@ -252,8 +253,9 @@ public class Citizen {
                 String relationWithHouseholdHead = rs.getString("RELATIONWITHHOUSEHOLDHEAD");
                 String gender = rs.getString("GENDER");
                 String householdNumber = rs.getString("HOUSEHOLDNUMBER");
+                String note = rs.getString("NOTE");
 
-                Citizen ctz = new Citizen(fullName, nickName, dateOfBirth, birthPlace, domicile, ethnic, job, workPlace, citizenID, dateRange, issuedBy, relationWithHouseholdHead, householdNumber, gender);
+                Citizen ctz = new Citizen(fullName, nickName, dateOfBirth, birthPlace, domicile, ethnic, job, workPlace, citizenID, dateRange, issuedBy, relationWithHouseholdHead, householdNumber, note, gender);
                 md.addRow(new Object[]{ctz.getFullName() + "", ctz.getNickName() + "", ctz.getDateOfBirth() + "", ctz.getDomicile() + "", ctz.getEthnic() + "", ctz.getJob() + "", ctz.getCitizenID() + "", ctz.getGender() + "", ctz.getHouseholdNumber() + ""});
                 listCitizen.add(ctz);
             }
@@ -270,8 +272,8 @@ public class Citizen {
         try {
             Connection conn = ConnectionToXampp.getConnection();
             Statement st = conn.createStatement();
-            String sql = "INSERT INTO `Citizen` (`FULLNAME`, `NICKNAME`, `DATEOFBIRTH`, `BIRTHPLACE`, `DOMICILE`, `ETHNIC`, `JOB`, `WORKPLACE`, `CITIZENID`, `DATERANGE`, `ISSUEDBY`, `RELATIONWITHHOUSEHOLDHEAD`, `HOUSEHOLDNUMBER`, `GENDER`) "
-                    + "VALUES ('"+citizen.getFullName()+"', '"+citizen.getNickName()+"', '"+df.format(citizen.getDateOfBirth())+"', '"+citizen.getBirthPlace()+"', '"+citizen.getDomicile()+"', '"+citizen.getEthnic()+"', NULL, NULL, NULL, NULL, NULL, '"+citizen.getRelationWithHouseholdHead()+"', '"+citizen.getHouseholdNumber()+"', '"+citizen.getGender()+"')";
+            String sql = "INSERT INTO `Citizen` (`FULLNAME`, `NICKNAME`, `DATEOFBIRTH`, `BIRTHPLACE`, `DOMICILE`, `ETHNIC`, `JOB`, `WORKPLACE`, `CITIZENID`, `DATERANGE`, `ISSUEDBY`, `RELATIONWITHHOUSEHOLDHEAD`, `HOUSEHOLDNUMBER`, `GENDER`, `NOTE`) "
+                    + "VALUES ('" + citizen.getFullName() + "', '" + citizen.getNickName() + "', '" + df.format(citizen.getDateOfBirth()) + "', '" + citizen.getBirthPlace() + "', '" + citizen.getDomicile() + "', '" + citizen.getEthnic() + "', NULL, NULL, NULL, NULL, NULL, '" + citizen.getRelationWithHouseholdHead() + "', '" + citizen.getHouseholdNumber() + "', '" + citizen.getGender() + "', '" + citizen.getNote() + "')";
 //            System.out.println(sql);
             rs = st.executeUpdate(sql);
             conn.close();
@@ -295,6 +297,7 @@ public class Citizen {
         citizenView.getjTextField_citizenid().setText(ctz.getCitizenID());
         citizenView.getjTextField_issuedby().setText(ctz.getIssuedBy());
         citizenView.getjTextField_daterange().setText(ctz.getDateRange() + "");
+        citizenView.getjTextField_note().setText(ctz.getNote());
 
     }
 
@@ -314,6 +317,20 @@ public class Citizen {
         newJPanel1.getjTextField_citizenid().setText(ctz.getCitizenID());
         newJPanel1.getjTextField_issuedby().setText(ctz.getIssuedBy());
         newJPanel1.getjTextField_daterange().setText(ctz.getDateRange() + "");
+        newJPanel1.getjTextField_note().setText(ctz.getNote());
 
+    }
+
+    public void update(Citizen citizenUpdate) {
+        int rs;
+        try {
+            Connection conn = ConnectionToXampp.getConnection();
+            Statement st = conn.createStatement();
+            String sql = "UPDATE `Citizen` SET `NICKNAME` = '"+citizenUpdate.getNickName()+"', `JOB` = '"+citizenUpdate.getJob()+"', `WORKPLACE` = '"+citizenUpdate.getWorkPlace()+"', `GENDER` = '"+citizenUpdate.getGender()+"', `NOTE` = '"+citizenUpdate.getNote()+"' WHERE `Citizen`.`FULLNAME` = '"+citizenUpdate.getFullName()+"' AND `Citizen`.`HOUSEHOLDNUMBER` = "+citizenUpdate.getHouseholdNumber()+"";
+            rs = st.executeUpdate(sql);
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

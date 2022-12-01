@@ -4,8 +4,10 @@
  */
 package view;
 
+import controller.CitizenController;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import model.Citizen;
 
 /**
@@ -13,7 +15,8 @@ import model.Citizen;
  * @author nnminh322
  */
 public class UpdateCitizenView extends javax.swing.JFrame {
-
+    private CitizenController citizenController = new CitizenController();
+    private Citizen citizenUpdate = new Citizen();
     private CitizenViewPanel citizenViewPanel = new CitizenViewPanel();
 
     /**
@@ -21,6 +24,7 @@ public class UpdateCitizenView extends javax.swing.JFrame {
      */
     public UpdateCitizenView(Citizen citizen) {
         initComponents();
+        citizenUpdate = citizen;
         citizen.showDetailjpn(citizenViewPanel, citizen);
         this.citizenViewPanel.lockForUpdate();
         this.jPanel1.add(citizenViewPanel);
@@ -36,35 +40,43 @@ public class UpdateCitizenView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText("Cập nhật");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jScrollPane1.setViewportView(jPanel1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(277, 277, 277)
+                .addGap(271, 271, 271)
                 .addComponent(jButton1)
-                .addContainerGap(290, Short.MAX_VALUE))
+                .addContainerGap(296, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 796, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addGap(21, 21, 21))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -72,7 +84,33 @@ public class UpdateCitizenView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        String nickNameUpdate = citizenViewPanel.getjTextField_nickname().getText();
+        String jobUpdate = citizenViewPanel.getjTextField_job().getText();
+        String workPlaceUpdate = citizenViewPanel.getjTextField_workplace().getText();
+        String genderUpdate = citizenViewPanel.getjTextField_gender().getText();
+        String note = citizenViewPanel.getjTextField_note().getText();
+
+        citizenUpdate.setNickName(nickNameUpdate);
+        citizenUpdate.setJob(jobUpdate);
+        citizenUpdate.setWorkPlace(workPlaceUpdate);
+        citizenUpdate.setGender(genderUpdate);
+        citizenUpdate.setNote(note);
+
+        citizenController.updateCitizen(citizenUpdate);
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    public Citizen getCitizenUpdate() {
+        return citizenUpdate;
+    }
+
+    public void setCitizenUpdate(Citizen citizenUpdate) {
+        this.citizenUpdate = citizenUpdate;
+    }
 
     /**
      * @param args the command line arguments
@@ -112,6 +150,7 @@ public class UpdateCitizenView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     public JButton getjButton1() {

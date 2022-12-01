@@ -676,6 +676,15 @@ public class CitizenViewPanel extends javax.swing.JPanel {
         this.jTextField_workplace = jTextField_workplace;
     }
 
+    public JTextField getjTextField_note() {
+        return jTextField_note;
+    }
+
+    public void setjTextField_note(JTextField jTextField_note) {
+        this.jTextField_note = jTextField_note;
+    }
+
+    
     public void lockForBirth() {
         this.getjTextField_relationwithhouseholdhead().setText("Con");
         this.getjTextField15().setText("Mới sinh");

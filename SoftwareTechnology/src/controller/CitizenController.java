@@ -44,4 +44,8 @@ public class CitizenController {
     public void showDetailCtz(int i, CitizenView citizenView) {
         listCtz.get(i).showDetail(citizenView, listCtz.get(i));
     }
+
+    public void updateCitizen(Citizen citizenUpdate) {
+        citizenUpdate.update(citizenUpdate);
+    }
 }

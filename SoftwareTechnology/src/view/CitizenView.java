@@ -577,6 +577,14 @@ public class CitizenView extends javax.swing.JFrame {
     public void setjTextField_workplace(JTextField jTextField_workplace) {
         this.jTextField_workplace = jTextField_workplace;
     }
+
+    public JTextField getjTextField_note() {
+        return jTextField_note;
+    }
+
+    public void setjTextField_note(JTextField jTextField_note) {
+        this.jTextField_note = jTextField_note;
+    }
     
     
 }

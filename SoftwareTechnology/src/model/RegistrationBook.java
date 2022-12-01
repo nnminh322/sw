@@ -178,9 +178,9 @@ public class RegistrationBook {
                 String issuedBy = rs.getString("ISSUEDBY");
                 String relationWithHouseholdHead = rs.getString("RELATIONWITHHOUSEHOLDHEAD");
                 String gender = rs.getString("GENDER");
-                String householdNumber1 = rs.getString("HOUSEHOLDNUMBER");
-
-                Citizen ctz = new Citizen(fullName, nickName, dateOfBirth, birthPlace, domicile, ethnic, job, workPlace, citizenID, dateRange, issuedBy, relationWithHouseholdHead, householdNumber1, gender);
+                String householdNumber = rs.getString("HOUSEHOLDNUMBER");
+                String note = rs.getString("NOTE");
+                Citizen ctz = new Citizen(fullName, nickName, dateOfBirth, birthPlace, domicile, ethnic, job, workPlace, citizenID, dateRange, issuedBy, relationWithHouseholdHead, householdNumber, note, gender);
                 listCitizen.add(ctz);
 //                System.out.println(ctz.getFullName());
 
@@ -211,7 +211,8 @@ public class RegistrationBook {
             citizenViewPanel.getjTextField_citizenid().setText(rgb.getListCitizen().get(i).getCitizenID());
             citizenViewPanel.getjTextField_issuedby().setText(rgb.getListCitizen().get(i).getIssuedBy());
             citizenViewPanel.getjTextField_daterange().setText(rgb.getListCitizen().get(i).getDateRange() + "");
-
+            citizenViewPanel.getjTextField_note().setText(rgb.getListCitizen().get(i).getNote());
+            
             citizenOfRGB.AddCitizenToRegistrationBookView(citizenViewPanel);
         }
     }

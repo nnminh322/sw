@@ -408,6 +408,7 @@ public class Home extends javax.swing.JFrame {
         CitizenOfAFamilyView updateCitizenView = new CitizenOfAFamilyView(rgbcontroller.getListRgb().get(i).getListCitizen());
         
         updateCitizenView.setVisible(true);
+//        this.initshow();
     }//GEN-LAST:event_jButton3MouseClicked
 
     /**
