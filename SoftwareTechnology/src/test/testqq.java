@@ -32,11 +32,14 @@ public class testqq {
         citizenViewPanel = new CitizenViewPanel();
         citizenViewPanel1 = new CitizenViewPanel();
         citizenViewPanel2 = new CitizenViewPanel();
-
+        
+//        citizenViewPanel.getjTextField_fullname().setEditable(false);
+        
         t.showDetailjpn(citizenViewPanel, t);
         t.showDetailjpn(citizenViewPanel1, t);
-        t.showDetailjpn(citizenViewPanel2, t);
+//        t.showDetailjpn(citizenViewPanel2, t);
 
+        citizenViewPanel2.lockForBirth();
         citizenOfRGB.AddCitizenToRegistrationBookView(citizenViewPanel);
         citizenOfRGB.AddCitizenToRegistrationBookView(citizenViewPanel1);
         citizenOfRGB.AddCitizenToRegistrationBookView(citizenViewPanel2);

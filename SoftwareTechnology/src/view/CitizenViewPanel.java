@@ -66,6 +66,10 @@ public class CitizenViewPanel extends javax.swing.JPanel {
         jTextField_job = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextField_workplace = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jTextField_note = new javax.swing.JTextField();
+
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel5.setText("Nơi sinh");
 
@@ -133,6 +137,8 @@ public class CitizenViewPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Ngày sinh");
 
+        jLabel19.setText("Ghi chú");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,13 +148,6 @@ public class CitizenViewPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel16)
-                                    .addComponent(jLabel14))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel15)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
@@ -161,19 +160,17 @@ public class CitizenViewPanel extends javax.swing.JPanel {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jTextField_daterange, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jTextField_citizenid, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                                    .addComponent(jTextField_citizenid, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addComponent(jTextField14)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel10)
                                             .addComponent(jLabel8))
                                         .addGap(111, 111, 111)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jTextField_ethnic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                            .addComponent(jTextField_job)))
+                                            .addComponent(jTextField_job)
+                                            .addComponent(jTextField_ethnic)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addGap(108, 108, 108)
@@ -205,30 +202,46 @@ public class CitizenViewPanel extends javax.swing.JPanel {
                                         .addGap(14, 14, 14)
                                         .addComponent(jLabel6))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(412, 412, 412)
-                                .addComponent(jLabel9))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel15)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(412, 412, 412)
+                                        .addComponent(jLabel9)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addComponent(jLabel1)
                         .addGap(50, 50, 50)
-                        .addComponent(jTextField_relationwithhouseholdhead, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField_relationwithhouseholdhead, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addGap(48, 48, 48))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel18)
-                                .addGap(46, 46, 46)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel17)
+                                    .addGap(48, 48, 48))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel18)
+                                    .addGap(46, 46, 46)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addGap(90, 90, 90)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextField_note)
+                            .addComponent(jTextField18)
+                            .addComponent(jTextField16))))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_issuedby, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_issuedby, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                        .addComponent(jTextField_gender, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
@@ -305,7 +318,11 @@ public class CitizenViewPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(jTextField_note, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -341,6 +358,7 @@ public class CitizenViewPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -365,6 +383,7 @@ public class CitizenViewPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_issuedby;
     private javax.swing.JTextField jTextField_job;
     private javax.swing.JTextField jTextField_nickname;
+    private javax.swing.JTextField jTextField_note;
     private javax.swing.JTextField jTextField_relationwithhouseholdhead;
     private javax.swing.JTextField jTextField_workplace;
     // End of variables declaration//GEN-END:variables
@@ -656,6 +675,28 @@ public class CitizenViewPanel extends javax.swing.JPanel {
     public void setjTextField_workplace(JTextField jTextField_workplace) {
         this.jTextField_workplace = jTextField_workplace;
     }
-    
-    
+
+    public void lockForBirth() {
+        this.getjTextField_relationwithhouseholdhead().setText("Con");
+        this.getjTextField15().setText("Mới sinh");
+        this.getjTextField_relationwithhouseholdhead().setEditable(false);
+        this.getjTextField_job().setEditable(false);
+        this.getjTextField_workplace().setEditable(false);
+        this.getjTextField_citizenid().setEditable(false);
+        this.getjTextField_daterange().setEditable(false);
+        this.getjTextField_issuedby().setEditable(false);
+        this.getjTextField14().setEditable(false);
+        this.getjTextField15().setEditable(false);
+        this.getjTextField16().setEditable(false);
+        this.getjTextField18().setEditable(false);
+
+    }
+
+    public void lockForUpdate() {
+        this.getjTextField_fullname().setEditable(false);
+        this.getjTextField_birthplace().setEditable(false);
+        this.getjTextField_domicile().setEditable(false);
+        this.getjTextField_ethnic().setEditable(false);
+
+    }
 }

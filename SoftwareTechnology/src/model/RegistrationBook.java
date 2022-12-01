@@ -182,7 +182,7 @@ public class RegistrationBook {
 
                 Citizen ctz = new Citizen(fullName, nickName, dateOfBirth, birthPlace, domicile, ethnic, job, workPlace, citizenID, dateRange, issuedBy, relationWithHouseholdHead, householdNumber1, gender);
                 listCitizen.add(ctz);
-                System.out.println(ctz.getFullName());
+//                System.out.println(ctz.getFullName());
 
             }
             conn.close();

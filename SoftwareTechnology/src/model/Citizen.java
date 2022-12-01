@@ -8,6 +8,8 @@ import connection.ConnectionToXampp;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +23,7 @@ import view.CitizenViewPanel;
  * @author sv_minhnn
  */
 public class Citizen {
-
+    public DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     private String fullName;
     private String nickName;
     private Date dateOfBirth;
@@ -38,6 +40,17 @@ public class Citizen {
     private List<Permanent> listPermanent;
     private String note;
     private String gender;
+
+    public Citizen(String fullName, String nickName, Date dateOfBirth, String birthPlace, String domicile, String ethnic, String gender) {
+        this.relationWithHouseholdHead = "Con";
+        this.fullName = fullName;
+        this.nickName = nickName;
+        this.dateOfBirth = dateOfBirth;
+        this.birthPlace = birthPlace;
+        this.domicile = domicile;
+        this.ethnic = ethnic;
+        this.gender = gender;
+    }
 
     public Citizen(String fullName, String nickName, Date dateOfBirth, String birthPlace, String domicile, String ethnic, String job, String workPlace, String citizenID, Date dateRange, String issuedBy, String relationWithHouseholdHead, String householdNumber, List<Permanent> listPermanent, String note, String gender) {
         this.fullName = fullName;
@@ -75,13 +88,15 @@ public class Citizen {
         this.gender = gender;
     }
 
-
-
     public Citizen() {
         super();
     }
 
-  
+    @Override
+    public String toString() {
+        return "Citizen{" + "fullName=" + fullName + ", nickName=" + nickName + ", dateOfBirth=" + dateOfBirth + ", birthPlace=" + birthPlace + ", domicile=" + domicile + ", ethnic=" + ethnic + ", job=" + job + ", workPlace=" + workPlace + ", citizenID=" + citizenID + ", dateRange=" + dateRange + ", issuedBy=" + issuedBy + ", relationWithHouseholdHead=" + relationWithHouseholdHead + ", householdNumber=" + householdNumber + ", listPermanent=" + listPermanent + ", note=" + note + ", gender=" + gender + '}';
+    }
+
     public String getFullName() {
         return fullName;
     }
@@ -237,9 +252,9 @@ public class Citizen {
                 String relationWithHouseholdHead = rs.getString("RELATIONWITHHOUSEHOLDHEAD");
                 String gender = rs.getString("GENDER");
                 String householdNumber = rs.getString("HOUSEHOLDNUMBER");
-                
+
                 Citizen ctz = new Citizen(fullName, nickName, dateOfBirth, birthPlace, domicile, ethnic, job, workPlace, citizenID, dateRange, issuedBy, relationWithHouseholdHead, householdNumber, gender);
-                md.addRow(new Object[]{ctz.getFullName()+"",ctz.getNickName()+"",ctz.getDateOfBirth()+"",ctz.getDomicile()+"",ctz.getEthnic()+"",ctz.getJob()+"",ctz.getCitizenID()+"",ctz.getGender()+"",ctz.getHouseholdNumber()+""});
+                md.addRow(new Object[]{ctz.getFullName() + "", ctz.getNickName() + "", ctz.getDateOfBirth() + "", ctz.getDomicile() + "", ctz.getEthnic() + "", ctz.getJob() + "", ctz.getCitizenID() + "", ctz.getGender() + "", ctz.getHouseholdNumber() + ""});
                 listCitizen.add(ctz);
             }
             conn.close();
@@ -249,40 +264,56 @@ public class Citizen {
 
         return listCitizen;
     }
-    
-    public void showDetail(CitizenView citizenView, Citizen ctz){
+
+    public void insertCitizen(Citizen citizen) {
+        int rs;
+        try {
+            Connection conn = ConnectionToXampp.getConnection();
+            Statement st = conn.createStatement();
+            String sql = "INSERT INTO `Citizen` (`FULLNAME`, `NICKNAME`, `DATEOFBIRTH`, `BIRTHPLACE`, `DOMICILE`, `ETHNIC`, `JOB`, `WORKPLACE`, `CITIZENID`, `DATERANGE`, `ISSUEDBY`, `RELATIONWITHHOUSEHOLDHEAD`, `HOUSEHOLDNUMBER`, `GENDER`) "
+                    + "VALUES ('"+citizen.getFullName()+"', '"+citizen.getNickName()+"', '"+df.format(citizen.getDateOfBirth())+"', '"+citizen.getBirthPlace()+"', '"+citizen.getDomicile()+"', '"+citizen.getEthnic()+"', NULL, NULL, NULL, NULL, NULL, '"+citizen.getRelationWithHouseholdHead()+"', '"+citizen.getHouseholdNumber()+"', '"+citizen.getGender()+"')";
+//            System.out.println(sql);
+            rs = st.executeUpdate(sql);
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showDetail(CitizenView citizenView, Citizen ctz) {
         citizenView.getjTextField_relationwithhouseholdhead().setText(ctz.getRelationWithHouseholdHead());
         citizenView.getjTextField_fullname().setText(ctz.getFullName());
         citizenView.getjTextField_nickname().setText(ctz.getNickName());
-        citizenView.getjTextField_dateofbirth().setText(ctz.getDateOfBirth()+"");
+        citizenView.getjTextField_dateofbirth().setText(ctz.getDateOfBirth() + "");
         citizenView.getjTextField_gender().setText(ctz.getGender());
         citizenView.getjTextField_birthplace().setText(ctz.getBirthPlace());
         citizenView.getjTextField_domicile().setText(ctz.getDomicile());
-        citizenView.getjTextField_ethnic().setText(ctz.getDomicile());
+        citizenView.getjTextField_ethnic().setText(ctz.getEthnic());
         //ton giao
         citizenView.getjTextField_job().setText(ctz.getJob());
-        citizenView.getjTextField14().setText(ctz.getWorkPlace());
+        citizenView.getjTextField_workplace().setText(ctz.getWorkPlace());
         citizenView.getjTextField_citizenid().setText(ctz.getCitizenID());
         citizenView.getjTextField_issuedby().setText(ctz.getIssuedBy());
-        citizenView.getjTextField_daterange().setText(ctz.getDateRange()+"");
-        
+        citizenView.getjTextField_daterange().setText(ctz.getDateRange() + "");
+
     }
+
     //
-        public void showDetailjpn(CitizenViewPanel newJPanel1, Citizen ctz){
+    public void showDetailjpn(CitizenViewPanel newJPanel1, Citizen ctz) {
         newJPanel1.getjTextField_relationwithhouseholdhead().setText(ctz.getRelationWithHouseholdHead());
         newJPanel1.getjTextField_fullname().setText(ctz.getFullName());
         newJPanel1.getjTextField_nickname().setText(ctz.getNickName());
-        newJPanel1.getjTextField_dateofbirth().setText(ctz.getDateOfBirth()+"");
+        newJPanel1.getjTextField_dateofbirth().setText(ctz.getDateOfBirth() + "");
         newJPanel1.getjTextField_gender().setText(ctz.getGender());
         newJPanel1.getjTextField_birthplace().setText(ctz.getBirthPlace());
         newJPanel1.getjTextField_domicile().setText(ctz.getDomicile());
-        newJPanel1.getjTextField_ethnic().setText(ctz.getDomicile());
+        newJPanel1.getjTextField_ethnic().setText(ctz.getEthnic());
         //ton giao
         newJPanel1.getjTextField_job().setText(ctz.getJob());
-        newJPanel1.getjTextField14().setText(ctz.getWorkPlace());
+        newJPanel1.getjTextField_workplace().setText(ctz.getWorkPlace());
         newJPanel1.getjTextField_citizenid().setText(ctz.getCitizenID());
         newJPanel1.getjTextField_issuedby().setText(ctz.getIssuedBy());
-        newJPanel1.getjTextField_daterange().setText(ctz.getDateRange()+"");
-        
+        newJPanel1.getjTextField_daterange().setText(ctz.getDateRange() + "");
+
     }
 }
